@@ -486,10 +486,15 @@ public class EssentialsExpansion extends PlaceholderExpansion {
         return String.valueOf(d);
     }
     
-        public static String formatDateDiff(final long date) {
-        final Calendar c = new GregorianCalendar();
-        c.setTimeInMillis(date);
-        final Calendar now = new GregorianCalendar();
-        return DateUtil.formatDateDiff(now, c);
+    public static String formatDateDiff(final long date) {
+        final long diff = Math.abs(System.currentTimeMillis() - date);
+
+        final long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
+        if (minutes < 60) {
+            return minutes + "m";
+        } else {
+            long hours = minutes / 60;
+            return hours + "h";
+        }
     }
 }
