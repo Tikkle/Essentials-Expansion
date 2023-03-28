@@ -60,7 +60,7 @@ public class EssentialsExpansion extends PlaceholderExpansion {
     private Essentials essentials;
     private BalanceTop baltop;
 
-    private final String VERSION = getClass().getPackage().getImplementationVersion();
+    private final String VERSION = "1.5.4";
 
     @Override
     public boolean canRegister() {
@@ -398,9 +398,6 @@ public class EssentialsExpansion extends PlaceholderExpansion {
                 return user.isMuted() ? papiTrue : papiFalse;
             case "playtime":
                 long playTime = user.getBase().getStatistic(Statistic.PLAY_ONE_MINUTE);
-                if (playTime == 0) {
-                    playTime = user.getBase().getStatistic(Statistic.PLAY_ONE_TICK) / 1200;
-                }
                 final long playtimeMs = System.currentTimeMillis() - (playTime * 50L);
                 return formatDateDiff(playtimeMs);
             case "vanished":
